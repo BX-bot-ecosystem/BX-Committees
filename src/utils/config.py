@@ -12,5 +12,5 @@ ROOT = str(Path(__file__).parent.parent)
 
 r = redis.Redis(host=_REDIS_HOST, port=_REDIS_PORT, decode_responses=True)
 
-with open(ROOT + "/data/Committees/committees.json") as f:
+with open(ROOT + "/data/committees.json") as f:
     committees_info = json.load(f)

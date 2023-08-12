@@ -6,8 +6,8 @@ import telegram.error
 import enum
 
 from telegram_bot_calendar import WYearTelegramCalendar, LSTEP
-from utils import db, gc
 import utils
+from utils import db, gc
 
 utils.Vcheck.telegram()
 from telegram import Update, Bot, InlineKeyboardButton, InlineKeyboardMarkup
@@ -31,7 +31,7 @@ COMMITTEES_TOKEN = os.getenv("SAILORE_COMMITTEE_BOT")
 PARROT_TOKEN = os.getenv("SAILORE_PARROT_BOT")
 SAILORE_TOKEN = os.getenv("SAILORE_BX_BOT")
 
-with open(utils.config.ROOT + '/data/Committees/committees.json') as f:
+with open(utils.config.ROOT + '/data/committees.json') as f:
     committees = json.load(f)
 
 utils.logger(__name__)
@@ -329,6 +329,10 @@ class Event_handler:
         for item in events:
             event_descriptions.append(gc.event_presentation_from_api(item))
         message = '\n -------------------------------------- \n'.join(event_descriptions)
+        if event_descriptions == []:
+            await context.bot.send_message(chat_id=update.effective_chat.id,
+                                           text="There is no events planned by this committee")
+            return self.state.HUB
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text="The events already planned by your committee are:")
         await context.bot.send_message(chat_id=update.effective_chat.id,
@@ -501,7 +505,7 @@ class Event_handler:
 
     async def summary(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         self.description = update.message.text
-        event_description = gc.event_presentation_from_data(self.active_committee, self.date, self.name, self.start_time, self.end_time, self.description)
+        event_description = gc.event_presentation_from_data(self.date, self.name, self.start_time, self.end_time, self.description)
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text=f"Current Event:\n {event_description}",
                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('yay', callback_data='True'), InlineKeyboardButton('nay', callback_data='False')]]),
@@ -542,7 +546,7 @@ class Access_handler:
                     CallbackQueryHandler(self.chose_role)
                 ],
             },
-            fallbacks=[MessageHandler(filters.TEXT, self.access)],
+            fallbacks=[MessageHandler(filters.TEXT, self.back)],
             map_to_parent={
                 self.state.HUB: self.state.HUB
             }
@@ -564,7 +568,7 @@ class Access_handler:
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text="The current users with access are: \n" + '\n'.join(current_admins))
         await context.bot.send_message(chat_id=update.effective_chat.id,
-                                       text="Do you want to generate a one-time /password to register a new user or change the current /rights (you can also go /back to the hub)")
+                                       text="Do you want to generate a one-time /password to register a new user or change the current /rights")
         return self.state.ACCESS
     async def password(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         new_password=self.active_committee + ':' + ''.join(random.choices(string.digits + string.ascii_letters, k=10))
@@ -669,8 +673,8 @@ class Message_handler:
                 counter += 1
                 await sailore_bot.send_message(chat_id=user['id'],
                     text=f"""Hello {user['name']}, a communication from one of your subscriptions was just sent to you but you didn't receive it as you haven't signed in into t.me/SailoreParrotBot""")
-        await context.bot.send_message(chat_id=update.effective_user.id,
-                                       text="Successfully echoed your message")
+        await query.edit_message_text(chat_id=update.effective_user.id,
+                                      text="Successfully echoed your message")
         if counter > 0:
             await context.bot.send_message(chat_id=update.effective_user.id,
                                            text=f"We also notified {counter} of your users which didn't sign into @SailoreParrotBot")
