@@ -1,0 +1,52 @@
+{
+    "example": {
+        "name": "Example \uD83D\uDC40",
+        "command": "/example",
+        "board": {
+            "Joe": {"role": "Prez", "message": "Hello"},
+            "Jack": {"role": "VP", "message": "Hullo"},
+            "Jimmy Bill Bob": {"role": "Trez", "message": "Gimme your money"}
+        },
+        "messages": {
+            "intro": ["Hullo, how are you? use /event to view events, /sub to subscribe and /exit to exit."]
+        }
+    },
+    ".9 Bar": {
+        "name": ".9 Bar \uD83C\uDF7B\uD83C\uDF7B",
+        "command": "/bar",
+        "board": {
+            "Carlos": {"role":  "Prez", "message":  "Always up to doing any crazy plan"},
+            "Maxime": {"role":  "VPrez", "message":  "Making sure everything runs smoothly"},
+            "Gabin": {"role":  "Stock", "message":  "Just making sure we don't run out of beer"},
+            "Alix": {"role":  "Comms", "message":  "Always pleased to inform you about everything"},
+            "Klaara": {"role":  "Trez", "message":  "You better give us what you owe us"},
+            "Anahi": {"role":  "Events", "message":  "Preparing your favorite events"},
+            "Johanna": {"role":  "Sked", "message":  "You better arrive in time..."},
+            "Arturo": {"role":  "Bartender", "message":  "Always thinking about the next cocktail"},
+            "Antoine": {"role":  "Bartender"}
+        },
+        "messages": {
+            "intro": ["Heyy, welcome to the greatest committee of all time", "Always up to serve you the best cocktails of all of Palaiseau"],
+            "info": ["This is the .9 Bar committee, basically the bar on the foyer", "We open friday's and saturday's from 8 to 11"],
+            "groupchat": ["There is no official groupchat of .9 so if you want us to keep you updated subscribe over here"],
+            "help": ["In this amazing committee bot you can learn /info about .9 or about our /board", "Moreover, you can /sub to our communications or view our next /event", "Whenever you want to leave just /exit"],
+            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "BX/B-": {
+        "name": "BX/B-",
+        "command": "/rowing",
+        "board": {
+            "Gianluca": {"role": "Prez"},
+            "Aditya": {"role": "VP"}
+        }
+    },
+    "PhysiX": {
+        "name": "PhysiX \uFE0F",
+        "command": "/physix"
+    },
+    "ClimbX": {
+        "name": "ClimbX \uD83E\uDDD7\uD83E\uDDD7",
+        "command": "/climbx"
+    }
+}
