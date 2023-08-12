@@ -7,3 +7,5 @@ redis
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
+git+https://github.com/BX-bot-ecosystem/BX-bot-utils.git@main
+
