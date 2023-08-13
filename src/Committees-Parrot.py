@@ -7,9 +7,9 @@ import enum
 
 from telegram_bot_calendar import WYearTelegramCalendar, LSTEP
 import utils
-from utils import db, gc
+import bx_utils
 
-utils.Vcheck.telegram()
+bx_utils.Vcheck.telegram()
 from telegram import Update, Bot, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import ParseMode
 from telegram.ext import (
@@ -34,7 +34,7 @@ SAILORE_TOKEN = os.getenv("SAILORE_BX_BOT")
 with open(utils.config.ROOT + '/data/committees.json') as f:
     committees = json.load(f)
 
-utils.logger(__name__)
+bx_utils.logger(__name__)
 
 class Activity(enum.Enum):
     HOME = 1
@@ -268,16 +268,16 @@ class event_changer:
         if property_changed == 'Description':
             self.event["description"] = data
         if property_changed == 'Date':
-            self.event["start"]["dateTime"] = gc.changeDate(self.event["start"]["dateTime"], data)
-            self.event["end"]["dateTime"] = gc.changeDate(self.event["end"]["dateTime"], data)
+            self.event["start"]["dateTime"] = bx_utils.gc.changeDate(self.event["start"]["dateTime"], data)
+            self.event["end"]["dateTime"] = bx_utils.gc.changeDate(self.event["end"]["dateTime"], data)
         if property_changed == 'Start':
-            self.event["start"]["dateTime"] = gc.changeTime(self.event["start"]["dateTime"], data, False)
+            self.event["start"]["dateTime"] = bx_utils.gc.changeTime(self.event["start"]["dateTime"], data, False)
         if property_changed == 'End':
-            self.event["end"]["dateTime"] = gc.changeTime(self.event["end"]["dateTime"], data, False)
+            self.event["end"]["dateTime"] = bx_utils.gc.changeTime(self.event["end"]["dateTime"], data, False)
 
     def check_dates(self):
         if self.event["end"]["dateTime"]  < self.event["start"]["dateTime"]:
-            self.event["end"]["dateTime"] = gc.nextDay(self.event["end"]["dateTime"])
+            self.event["end"]["dateTime"] = bx_utils.gc.nextDay(self.event["end"]["dateTime"])
 
 class Event_handler:
     def __init__(self, active_committee, ):
@@ -324,10 +324,10 @@ class Event_handler:
         return self.state.EVENT
 
     async def view(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        events = gc.get_committee_events(self.active_committee)
+        events = bx_utils.gc.get_committee_events(self.active_committee)
         event_descriptions = []
         for item in events:
-            event_descriptions.append(gc.event_presentation_from_api(item))
+            event_descriptions.append(bx_utils.gc.event_presentation_from_api(item))
         message = '\n -------------------------------------- \n'.join(event_descriptions)
         if event_descriptions == []:
             await context.bot.send_message(chat_id=update.effective_chat.id,
@@ -392,7 +392,7 @@ class Event_handler:
 
         key, state, event = self.event_changer.process(data)
         if not key and state == 'delete':
-            gc.deleteEvent(event)
+            bx_utils.gc.deleteEvent(event)
             await query.edit_message_text(text="Alright")
             return self.state.HUB
         if not key and state == 'event':
@@ -408,7 +408,7 @@ class Event_handler:
 
         if not key and state == 'other':
             self.event_changer.build()
-            gc.update_event(event)
+            bx_utils.gc.update_event(event)
             await query.edit_message_text(text=message[state], reply_markup=self.event_changer.keyboard)
             return self.state.MODIFY_EVENT
 
@@ -505,7 +505,7 @@ class Event_handler:
 
     async def summary(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         self.description = update.message.text
-        event_description = gc.event_presentation_from_data(self.date, self.name, self.start_time, self.end_time, self.description)
+        event_description = bx_utils.gc.event_presentation_from_data(self.date, self.name, self.start_time, self.end_time, self.description)
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text=f"Current Event:\n {event_description}",
                                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('yay', callback_data='True'), InlineKeyboardButton('nay', callback_data='False')]]),
@@ -519,15 +519,15 @@ class Event_handler:
             await query.edit_message_text(text="Event upload cancelled")
             return self.state.HUB
         await query.edit_message_text(text=f"The event has been uploaded to the google calendar, users will be able to see it on your committee part of SailoreBXBot two weeks prior to the event")
-        gc.create_event(self.date, self.start_time, self.end_time, self.active_committee, self.name, self.description)
+        bx_utils.gc.create_event(self.date, self.start_time, self.end_time, self.active_committee, self.name, self.description)
         return self.state.HUB
 
 class Access_handler:
     def __init__(self, active_committee):
         self.active_committee = active_committee
-        access_granted = db.get_committee_access(self.active_committee)
+        access_granted = bx_utils.db.get_committee_access(self.active_committee)
         keys = ['user:' + user_id for user_id in access_granted.keys()]
-        admins_info = db.get_users_info(keys)
+        admins_info = bx_utils.db.get_users_info(keys)
         self.admins_rights = {admin['name']: access_granted[admin['id']] for admin in admins_info}
         self.admins_ids = {admin['name']: admin['id'] for admin in admins_info}
         self.state = Activity.ACCESS
@@ -572,7 +572,7 @@ class Access_handler:
         return self.state.ACCESS
     async def password(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         new_password=self.active_committee + ':' + ''.join(random.choices(string.digits + string.ascii_letters, k=10))
-        db.add_one_time_pass(new_password, self.active_committee)
+        bx_utils.db.add_one_time_pass(new_password, self.active_committee)
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text=f"The password generated is <b>{new_password}</b>, the default rights are admin for new users",
                                        parse_mode=ParseMode.HTML)
@@ -602,9 +602,9 @@ class Access_handler:
                 for user in users_to_eliminate:
                     del self.admins_rights[user]
                     committee_command = committees[self.active_committee]["command"]
-                    db.eliminate_access_rights(self.admins_ids[user], self.active_committee, committee_command)
+                    bx_utils.db.eliminate_access_rights(self.admins_ids[user], self.active_committee, committee_command)
             new_rights = {self.admins_ids[admin]: self.admins_rights[admin] for admin in self.admins_rights.keys()}
-            db.change_committee_access(self.active_committee, new_rights)
+            bx_utils.db.change_committee_access(self.active_committee, new_rights)
             await query.edit_message_text(text="The rights have been updated accordingly")
             return self.state.HUB
         self.right_changer.build()
@@ -659,8 +659,8 @@ class Message_handler:
             await query.edit_message_text(text='Alright, back to the hub')
             return self.state.HUB
 
-        keys = db.subs_of_committee(self.active_committee)
-        users_info = db.get_users_info(keys)
+        keys = bx_utils.db.subs_of_committee(self.active_committee)
+        users_info = bx_utils.db.get_users_info(keys)
         parrot_bot = Bot(PARROT_TOKEN)
         sailore_bot = Bot(SAILORE_TOKEN)
         counter = 0
@@ -711,7 +711,7 @@ class Committee_hub:
             }
         )
     async def hub(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        self.user_rights = db.get_committee_access(self.active_committee)[str(update.effective_user.id)]
+        self.user_rights = bx_utils.db.get_committee_access(self.active_committee)[str(update.effective_user.id)]
         self.access_handler.user_rights = self.user_rights
         self.event_handler.user_rights = self.user_rights
         self.message_handler.user_rights = self.user_rights
@@ -733,8 +733,8 @@ class Committee_hub:
                                        text="If you want to access other committee, then /logout")
         return self.state.HUB
     async def give_subs(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        keys = db.subs_of_committee(self.active_committee)
-        users_info = db.get_users_info(keys)
+        keys = bx_utils.db.subs_of_committee(self.active_committee)
+        users_info = bx_utils.db.get_users_info(keys)
         names = [user["fullname"] for user in users_info]
 
         names.insert(0, '')
@@ -755,8 +755,8 @@ class Committee_hub:
         return self.state.MESSAGE
     async def parrot(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         message = update.message.text
-        keys = db.subs_of_committee(self.active_committee)
-        users_info = db.get_users_info(keys)
+        keys = bx_utils.db.subs_of_committee(self.active_committee)
+        users_info = bx_utils.db.get_users_info(keys)
         parrot_bot = Bot(PARROT_TOKEN)
         sailore_bot = Bot(SAILORE_TOKEN)
         counter = 0
@@ -814,10 +814,10 @@ class Committees_Login:
         )
 
     async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        info = db.get_user_info(update.effective_user)
+        info = bx_utils.db.get_user_info(update.effective_user)
         rights = info["rights"]
-        access_list = db.db_to_list(rights)
-        message_list = db.list_to_telegram(access_list)
+        access_list = bx_utils.db.db_to_list(rights)
+        message_list = bx_utils.db.list_to_telegram(access_list)
         await context.bot.send_message(chat_id=update.effective_user.id,
                                        text="This bot is for committees to manage their bot sections")
         if len(access_list) == 0:
@@ -866,11 +866,11 @@ class Committees_Login:
             await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Error: either you entered an incorrect password or one has not been generated")
             return self.state.HOME
-        if not db.use_one_time_pass(password, committee_name):
+        if not bx_utils.db.use_one_time_pass(password, committee_name):
             await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Error: either you entered an incorrect password or one has not been generated")
             return self.state.HOME
-        result = db.add_access_rights(update.effective_user, committee_name, committee_command)
+        result = bx_utils.db.add_access_rights(update.effective_user, committee_name, committee_command)
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Your rights have been successfully updated")
         return self.state.HOME

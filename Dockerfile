@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./
 COPY service_account.json ../
 
-CMD ["python", "Committees-parrot.py"]
+CMD ["python", "Committees-Parrot.py"]
