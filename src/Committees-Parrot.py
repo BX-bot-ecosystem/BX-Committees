@@ -814,6 +814,7 @@ class Committees_Login:
         )
 
     async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        bx_utils.db.add_to_db(update.effective_user)
         info = bx_utils.db.get_user_info(update.effective_user)
         rights = info["rights"]
         access_list = bx_utils.db.db_to_list(rights)
