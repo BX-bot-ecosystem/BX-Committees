@@ -166,7 +166,10 @@ class Right_changer:
         MORE = 4
     def __init__(self, user_rights):
         self.user_rights = user_rights
-        self.active_user = [user for user in user_rights.keys() if user_rights[user] == 'Prez'][0]
+        try:
+            self.active_user = [user for user in user_rights.keys() if user_rights[user] == 'Prez'][0]
+        except IndexError:
+            self.active_user = ''
         self.keyboard = InlineKeyboardMarkup([[]])
         self.state = self.State.USER
         self.new_user_rights = user_rights
