@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-COMMITTEES_TOKEN = os.getenv("SAILORE_COMMITTEE_BOT")
+COMMITTEES_TOKEN = os.getenv("TEST_BOT")
 PARROT_TOKEN = os.getenv("SAILORE_PARROT_BOT")
 SAILORE_TOKEN = os.getenv("SAILORE_BX_BOT")
 
