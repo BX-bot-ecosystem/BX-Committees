@@ -34,7 +34,7 @@ with open(utils.config.ROOT + '/data/committees.json') as f:
 bx_utils.logger(__name__)
 
 class Activity(enum.Enum):
-    HOME = 0
+    LOGOUT_HOME = 0
     LOGIN = 1
     VERIFICATION = 2
     HUB = 4
@@ -42,13 +42,13 @@ class Activity(enum.Enum):
 class Committees_Login:
     def __init__(self):
         self.active_committee = ''
-        self.state = Activity.HOME
+        self.state = Activity.LOGOUT_HOME
         self.committee_hub = ''
         self.access_list = []
         self.login_handler=ConversationHandler(
             entry_points=[MessageHandler(filters.TEXT, self.start)],
             states={
-                self.state.HOME: [
+                self.state.LOGOUT_HOME: [
                     MessageHandler(filters.TEXT, self.start)
                 ],
                 self.state.LOGIN: [
@@ -97,7 +97,7 @@ class Committees_Login:
         else:
             await context.bot.send_message(chat_id=update.effective_user.id,
                                            text="That is not a valid choice, either you don't have access or it doesn't exist")
-            return self.state.HOME
+            return self.state.LOGOUT_HOME
 
     def update_hub(self):
         """
@@ -116,20 +116,19 @@ class Committees_Login:
     async def verify_password(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         password = update.message.text
         committee_name = password.split(':')[0]
-        try:
-            committee_command = [key for key in committees.keys() if committees[key] == committee_name][0]
-        except IndexError:
+        if not committee_name in committees.keys():
             await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Error: either you entered an incorrect password or one has not been generated")
-            return self.state.HOME
+            return self.state.LOGOUT_HOME
+        committee_command = committees[committee_name]["command"]
         if not bx_utils.db.use_one_time_pass(password, committee_name):
             await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Error: either you entered an incorrect password or one has not been generated")
-            return self.state.HOME
+            return self.state.LOGOUT_HOME
         result = bx_utils.db.add_access_rights(update.effective_user, committee_name, committee_command)
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                            text="Your rights have been successfully updated")
-        return self.state.HOME
+        return self.state.LOGOUT_HOME
 
 def main() -> None:
     """Run the bot."""

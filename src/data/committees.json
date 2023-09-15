@@ -1,36 +1,35 @@
 {
-    "example": {
-        "name": "Example \uD83D\uDC40",
-        "command": "/example",
-        "board": {
-            "Joe": {"role": "Prez", "message": "Hello"},
-            "Jack": {"role": "VP", "message": "Hullo"},
-            "Jimmy Bill Bob": {"role": "Trez", "message": "Gimme your money"}
-        },
-        "messages": {
-            "intro": ["Hullo, how are you? use /event to view events, /sub to subscribe and /exit to exit."]
-        }
-    },
     ".9 Bar": {
         "name": ".9 Bar \uD83C\uDF7B\uD83C\uDF7B",
         "command": "/bar",
         "board": {
-            "Carlos": {"role":  "Prez", "message":  "Always up to doing any crazy plan"},
-            "Maxime": {"role":  "VPrez", "message":  "Making sure everything runs smoothly"},
-            "Gabin": {"role":  "Stock", "message":  "Just making sure we don't run out of beer"},
-            "Alix": {"role":  "Comms", "message":  "Always pleased to inform you about everything"},
-            "Klaara": {"role":  "Trez", "message":  "You better give us what you owe us"},
-            "Anahi": {"role":  "Events", "message":  "Preparing your favorite events"},
-            "Johanna": {"role":  "Sked", "message":  "You better arrive in time..."},
-            "Arturo": {"role":  "Bartender", "message":  "Always thinking about the next cocktail"},
+            "Carlos": {"role":  "Prez", "message":  "Idk ill see"},
+            "Maxime": {"role":  "VPrez"},
+            "Gabin": {"role":  "Stock"},
+            "Alix": {"role":  "Comms", "message": "Currently writing a message you’ll see in allpromo"},
+            "Klaara": {"role":  "Trez"},
+            "Anahi": {"role":  "Events"},
+            "Johanna": {"role":  "Sked"},
+            "Arturo": {"role":  "Bartender", "message": "Thinking about the next cocktail"},
             "Antoine": {"role":  "Bartender"}
         },
         "messages": {
-            "intro": ["Heyy, welcome to the greatest committee of all time", "Always up to serve you the best cocktails of all of Palaiseau"],
-            "info": ["This is the .9 Bar committee, basically the bar on the foyer", "We open friday's and saturday's from 8 to 11"],
-            "groupchat": ["There is no official groupchat of .9 so if you want us to keep you updated subscribe over here"],
+            "intro": ["Heyy, welcome to .9, the coolest club on campus 😎", "We are the bachelor’s bar committee, dedicated to serving you delicious drinks", "…although you probably already know us from bachelor parties because, let’s be honest, is it really a party without .9? ;)"],
+            "info": [".9 is the bachelor’s very own bar committee, located in the foyer!","Come down for a refreshing drink during opening hours: Friday and Saturday from 20h-23h \uD83C\uDF7A\uD83C\uDF78\uD83C\uDF79\uD83E\uDD64"],
+            "groupchat": ["here’s no official .9 groupchat, but you can subscribe to our communications to learn about the bar’s upcoming events (you won’t want to miss them \uD83C\uDF7E)"],
             "help": ["In this amazing committee bot you can learn /info about .9 or about our /board", "Moreover, you can /sub to our communications or view our next /event", "Whenever you want to leave just /exit"],
             "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "FightX": {
+        "name": "FightX",
+        "command": "FightX",
+        "board": {
+        "Sacha Elalouf": {"role":  "President"}},
+    "messages": {
+        "intro": ["Welcome to the very unique fighting sports and martial arts committee of the bachelor!"],
+        "info": ["This group has been inactive for the past year, but the goal is to find motivated people from all backgrounds (from beginner to expert in any discipline) to train regularly and teach others what you know 🥋🥋","If you want to join the board, don’t hesitate to pm @sacha.el on instagram or @sachaela on telegram","If you just want to see how it’s like, join the groupchat and check out one of our trainings. See you soon 🥊🥊🥊"],
+        "groupchat": ["Join our groupchat to learn about our amazing events https://t.me/+tAjrTA3xZ_JiZjQ0"]
         }
     },
     "BX/B-": {
@@ -41,12 +40,30 @@
             "Aditya": {"role": "VP"}
         }
     },
-    "PhysiX": {
-        "name": "PhysiX \uFE0F",
-        "command": "/physix"
+    "Xcinema": {
+        "name": "Xcinema",
+        "command": "/cinema",
+        "board": {
+            "Manon": {"role": "Prez"},
+            "Anna": {"role": "VP"},
+            "Gianluca": {"role": "VP"},
+            "Aditya": {"role": "Trez"}
+        }
     },
-    "ClimbX": {
-        "name": "ClimbX \uD83E\uDDD7\uD83E\uDDD7",
-        "command": "/climbx"
+    "PhysiX": {
+        "name": "PhysiX",
+        "command": "/physix",
+        "board": {
+            "Aditya": {"role": ""}
+        }
+    },
+    "example": {
+        "name": "Example",
+        "command": "/example",
+        "board": {
+            "Joe": {
+                "role": "Prez"
+            }
+        }
     }
 }

@@ -37,8 +37,9 @@ with open(utils.config.ROOT + '/data/committees.json') as f:
 bx_utils.logger(__name__)
 
 class Activity(enum.Enum):
+    HOME = 0
     EXIT = -1
-    HUB = 0
+    HUB = 1
     MESSAGE = 105
     MESSAGE_CONFIRMATION = 106
     ACCESS = 107
@@ -78,7 +79,7 @@ class Committee_hub_base:
             states=self.states,
             fallbacks=[MessageHandler(filters.TEXT, self.hub)],
             map_to_parent={
-                self.state.EXIT: self.state.HUB
+                self.state.EXIT: self.state.HOME
             }
         )
     async def hub(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
