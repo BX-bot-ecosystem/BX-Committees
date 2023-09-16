@@ -47,7 +47,7 @@ class Committees_Login:
         self.committee_hub = ''
         self.access_list = []
         self.login_handler=ConversationHandler(
-            block=False,
+
             entry_points=[MessageHandler(filters.TEXT, self.start)],
             states={
                 self.state.LOGOUT_HOME: [
@@ -124,7 +124,7 @@ class Committees_Login:
 def main() -> None:
     """Run the bot."""
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token(COMMITTEES_TOKEN).build()
+    application = Application.builder().token(COMMITTEES_TOKEN).concurrent_updates(True).build()
     committees_hub = Committees_Login()
     application.add_handler(committees_hub.login_handler)
 
