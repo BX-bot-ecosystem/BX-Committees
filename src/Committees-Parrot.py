@@ -41,6 +41,7 @@ class Activity(enum.Enum):
 
 class Committees_Login:
     def __init__(self):
+        self.hub_handlers = Committees.committee_handlers
         self.active_committee = ''
         self.state = Activity.LOGOUT_HOME
         self.committee_hub = ''
@@ -58,9 +59,8 @@ class Committees_Login:
                 self.state.VERIFICATION: [
                     MessageHandler(filters.TEXT, self.verify_password)
                 ],
-                self.state.HUB: [
+                self.state.HUB: self.hub_handlers,
 
-                ]
             },
             fallbacks=[MessageHandler(filters.TEXT, self.start)]
         )
@@ -84,30 +84,20 @@ class Committees_Login:
                                        text="To gain admin access to a new committee ask your committee head for a one time password")
         await context.bot.send_message(chat_id=update.effective_user.id,
                                        text="Once generated use the command /password to gain access")
-        return self.state.LOGIN
+        return self.state.HUB
     async def login(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         committee = update.message.text
         if committee in self.access_list:
             self.active_committee = [committee_name for committee_name in committees.keys() if committees[committee_name]["command"] == committee][0]
             await context.bot.send_message(chat_id=update.effective_user.id,
                                            text=f"You have successfully logged in")
-            self.update_hub()
-            await self.committee_hub.hub(update, context)
+
             return self.state.HUB
         else:
             await context.bot.send_message(chat_id=update.effective_user.id,
                                            text="That is not a valid choice, either you don't have access or it doesn't exist")
             return self.state.LOGOUT_HOME
 
-    def update_hub(self):
-        """
-        Gain access to the specific hub or the generic one with the given name adjusted
-        """
-        if self.active_committee in Committees.committees.keys():
-            self.committee_hub = Committees.committees[self.active_committee]
-        else:
-            self.committee_hub = Committees.Committee_hub_base(self.active_committee)
-        self.login_handler.states[self.state.HUB] = [self.committee_hub.handler]
     async def password_access(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text="What is your one time password?")

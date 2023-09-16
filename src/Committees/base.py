@@ -6,6 +6,8 @@ import telegram.error
 import enum
 
 from telegram_bot_calendar import WYearTelegramCalendar, LSTEP
+
+import Committees
 import utils
 import bx_utils
 
@@ -56,6 +58,7 @@ class Activity(enum.Enum):
 class Committee_hub_base:
     def __init__(self, name, extra_hub_handlers: list | None = None, extra_states: dict | None = None):
         self.name = name
+        self.command = Committees.committees_info[name]["command"][1:]
         self.state = Activity.HUB
         self.access_handler = Access_handler(name)
         self.event_handler = Event_handler(name)
@@ -75,7 +78,8 @@ class Committee_hub_base:
             self.state.MESSAGE: [MessageHandler(filters.TEXT, self.parrot)],
         }, **(extra_states if extra_states else {})}
         self.handler = ConversationHandler(
-            entry_points=hub_handlers,
+            name=name,
+            entry_points=[CommandHandler(self.command, self.hub)],
             states=self.states,
             fallbacks=[MessageHandler(filters.TEXT, self.hub)],
             map_to_parent={
@@ -83,7 +87,12 @@ class Committee_hub_base:
             }
         )
     async def hub(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        self.user_rights = bx_utils.db.get_committee_access(self.name)[str(update.effective_user.id)]
+        try:
+            self.user_rights = bx_utils.db.get_committee_access(self.name)[str(update.effective_user.id)]
+        except KeyError:
+            await context.bot.send_message(chat_id=update.effective_chat.id,
+                                           text="That is not a valid choice")
+            return None
         self.access_handler.user_rights = self.user_rights
         self.event_handler.user_rights = self.user_rights
         self.message_handler.user_rights = self.user_rights
