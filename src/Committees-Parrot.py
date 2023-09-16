@@ -55,7 +55,7 @@ class Committees_Login:
                 ],
                 self.state.LOGIN: [
                     CommandHandler("password", self.password_access),
-                    MessageHandler(filters.TEXT, self.login)
+                    MessageHandler(filters.TEXT, self.committees_selection)
                 ],
                 self.state.VERIFICATION: [
                     MessageHandler(filters.TEXT, self.verify_password)
@@ -67,6 +67,11 @@ class Committees_Login:
         )
 
     async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        await context.bot.send_message(chat_id=update.effective_user.id,
+                                       text="Do you want to use a one time /password to gain access to a new committee or do you want to access one of the /committees you are a part of")
+        return self.state.LOGIN
+
+    async def committees_selection(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         bx_utils.db.add_to_db(update.effective_user)
         info = bx_utils.db.get_user_info(update.effective_user)
         rights = info["rights"]
@@ -81,23 +86,7 @@ class Committees_Login:
             await context.bot.send_message(chat_id=update.effective_user.id,
                                            text="Right now you have access to the following committees \n" + message_list)
             self.access_list = access_list
-        await context.bot.send_message(chat_id=update.effective_user.id,
-                                       text="To gain admin access to a new committee ask your committee head for a one time password")
-        await context.bot.send_message(chat_id=update.effective_user.id,
-                                       text="Once generated use the command /password to gain access")
         return self.state.HUB
-    async def login(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        committee = update.message.text
-        if committee in self.access_list:
-            self.active_committee = [committee_name for committee_name in committees.keys() if committees[committee_name]["command"] == committee][0]
-            await context.bot.send_message(chat_id=update.effective_user.id,
-                                           text=f"You have successfully logged in")
-
-            return self.state.HUB
-        else:
-            await context.bot.send_message(chat_id=update.effective_user.id,
-                                           text="That is not a valid choice, either you don't have access or it doesn't exist")
-            return self.state.LOGOUT_HOME
 
     async def password_access(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id,
