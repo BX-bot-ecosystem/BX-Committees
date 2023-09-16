@@ -47,6 +47,7 @@ class Committees_Login:
         self.committee_hub = ''
         self.access_list = []
         self.login_handler=ConversationHandler(
+            block=False,
             entry_points=[MessageHandler(filters.TEXT, self.start)],
             states={
                 self.state.LOGOUT_HOME: [

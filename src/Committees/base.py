@@ -78,6 +78,7 @@ class Committee_hub_base:
             self.state.MESSAGE: [MessageHandler(filters.TEXT, self.parrot)],
         }, **(extra_states if extra_states else {})}
         self.handler = ConversationHandler(
+            block=False,
             name=name,
             entry_points=[CommandHandler(self.command, self.hub)],
             states=self.states,
@@ -408,6 +409,7 @@ class Event_handler:
         self.time_picker = time_picker()
         self.event_changer = None
         self.event_handler = ConversationHandler(
+            block=False,
             entry_points=[CommandHandler("event", self.events)],
             states={
                 self.state.EVENT: [CommandHandler("view", self.view), CommandHandler("create", self.create)],
@@ -649,6 +651,7 @@ class Access_handler:
         self.user_rights = None
         self.right_changer = Right_changer(self.admins_rights)
         self.access_handler=ConversationHandler(
+            block=False,
             entry_points=[CommandHandler("access", self.access)],
             states={
                 self.state.ACCESS: [
@@ -735,6 +738,7 @@ class Message_handler:
         self.message_text = ''
 
         self.message_handler = ConversationHandler(
+            block=False,
             entry_points=[CommandHandler("message", self.message)],
             states={
                 self.state.MESSAGE: [MessageHandler(filters.TEXT, self.confirm)],
