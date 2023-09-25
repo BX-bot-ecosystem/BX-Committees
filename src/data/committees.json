@@ -383,7 +383,7 @@
             "Oscar": {"role":  "Treasurer"},
             "Romain": {"role":  "Logistics"},
             "Maelle": {"role":  "Contacts"},
-            "Osman": {"role":  "Contacts"},
+            "Osman": {"role":  "Contacts"}
         },
         "messages": {
             "intro": ["The most useful committee of the bachelor: get networking and internship opportunities!", "Use /help to view possible commands"],
