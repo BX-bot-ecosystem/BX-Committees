@@ -7,18 +7,18 @@
             "Maxime": {"role":  "VPrez"},
             "Gabin": {"role":  "Stock"},
             "Alix": {"role":  "Comms", "message": "Currently writing a message you’ll see in allpromo"},
-            "Klaara": {"role":  "Trez"},
+            "Klaara": {"role":  "Trez", "message":  "Another committee I'm treasurer of"},
             "Anahi": {"role":  "Events"},
             "Johanna": {"role":  "Sked"},
             "Arturo": {"role":  "Bartender", "message": "Thinking about the next cocktail"},
-            "Antoine": {"role":  "Bartender"}
+            "Antoine": {"role":  "Bartender", "message":  "As a bartender, my beers are served cold but my tea always comes hot"}
         },
         "messages": {
-            "intro": ["Heyy, welcome to .9, the coolest club on campus 😎", "We are the bachelor’s bar committee, dedicated to serving you delicious drinks", "…although you probably already know us from bachelor parties because, let’s be honest, is it really a party without .9? ;)"],
+            "intro": ["Heyy, welcome to .9, the coolest club on campus 😎", "We are the bachelor’s bar committee, dedicated to serving you delicious drinks", "…although you probably already know us from bachelor parties because, let’s be honest, is it really a party without .9? ;)", "Remember to use /help if you are a little bit lost"],
             "info": [".9 is the bachelor’s very own bar committee, located in the foyer!","Come down for a refreshing drink during opening hours: Friday and Saturday from 20h-23h \uD83C\uDF7A\uD83C\uDF78\uD83C\uDF79\uD83E\uDD64"],
             "groupchat": ["here’s no official .9 groupchat, but you can subscribe to our communications to learn about the bar’s upcoming events (you won’t want to miss them \uD83C\uDF7E)"],
             "help": ["In this amazing committee bot you can learn /info about .9 or about our /board", "Moreover, you can /sub to our communications or view our next /event", "Whenever you want to leave just /exit"],
-            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+            "predetermined": ["I think you have drunk a little bit too much, I didn't understand what you said", "Do you need any /help ??"]
         }
     },
     "FightX": {
@@ -27,7 +27,7 @@
         "board": {
         "Sacha Elalouf": {"role":  "President"}},
         "messages": {
-            "intro": ["Welcome to the very unique fighting sports and martial arts committee of the bachelor!"],
+            "intro": ["Welcome to the very unique fighting sports and martial arts committee of the bachelor!", "Use /help for commands."],
             "info": ["This group has been inactive for the past year, but the goal is to find motivated people from all backgrounds (from beginner to expert in any discipline) to train regularly and teach others what you know 🥋🥋","If you want to join the board, don’t hesitate to pm @sacha.el on instagram or @sachaela on telegram","If you just want to see how it’s like, join the groupchat and check out one of our trainings. See you soon 🥊🥊🥊"],
             "groupchat": ["Join our groupchat to learn about our amazing events https://t.me/+tAjrTA3xZ_JiZjQ0"]
         }
@@ -50,19 +50,19 @@
     }
     },
     "OnlyGains": {
-        "name": "OnlyGains \uD83C\uDFCB\uFE0F\uD83C\uDFCB\uFE0F",
+        "name": "OnlyGains🔒",
         "command": "/OnlyGains",
         "board": {
             "Maurice Constantin Matar": {"role":  " Co-President", "message": "Yogurt is a superfood"},
             "Sacha Elalouf": {"role":  "Co-President", "message": "Force et honneur"},
-            "Hicham": {"role":  "OG Board Member", "message": "Practice Safe Sets\uD83D\uDE24"},
-            "Etienne Leroy ": {"role":  "Head Coach", "message": "I like to lift \uD83D\uDC4D"},
-            "Martina": {"role":  "Girl Rep", "message": "Manifesting Muscle Mommy ✨"},
+            "Hicham": {"role":  "OG Board Member", "message": "Practice Safe Sets😤"},
+            "Etienne Leroy ": {"role":  "Head Coach", "message": "I like to lift "},
+            "Martina": {"role":  "<Girl Rep>", "message": "Manifesting Muscle Mommy✨"},
             "Aminr": {"role":  "Co-Founder"},
             "Alessandro Massaad": {"role":  "Founding Board Member"}
         },
         "messages": {
-          "intro": ["Hello and welcome to the health and fitness of the X-Bachelor! The goal of this committee is to help you get into fitness within the campus, teach you about fitness, and help you achieve your goals whatever they may be!"],
+          "intro": ["Hello and welcome to the health and fitness of the X-Bachelor! The goal of this committee is to help you get into fitness within the campus, teach you about fitness, and help you achieve your goals whatever they may be!", "/help will tell you about our commands."],
           "info": ["Based on our (very rigorous) observations, we estimate that less than 5% of the bachelors actively participate in resistance training on a weekly basis. Even worse, only a small fraction stay committed to their goals. Put simply, our mission is to get these numbers up and provide to everyone the tools they may need to give them the best chance in achieving their goals, as well as to hold them accountable for the goals they set for themselves.", "How will we do this You must know that we (the board) are here to answer any question you might have on training (whether it be a question about a specific exercise, the execution of a movement, training split information, nutrition…) and provide you with recourses to look into it yourself. Will also try to provide equipment and a place to train if possible.", "We are also planning on organizing many exciting events (STAY TUNED WITH US DURING THE YEAR), which will allow you to network with likeminded people in a safe and judgement-free environment."],
           "groupchat": ["JOIN OUR TELEGRAM GROUPCHAT TODAY -> https://t.me/+ycNq2rJBbu8yZmY0"],
           "help":  ["If you have any question, don’t hesitate to ask any of the board members (or one of the presidents (@sachaela or @matarmc)\nTo see all board members, enter:   /board\nTo know more information about us : /info\nTo join the groupchat : /groupchat"],
@@ -78,7 +78,7 @@
             "Adi": {"role":  "Assistant"}
         },
         "messages": {
-            "intro": ["Swwwwiiiisshhhh.......Swwoosshhh (dramtic sounds)","Dear Badminton lovers, let us introduce to you ShuttleX , the BX badminton committee", "If you feel like your biceps and triceps have got the swing for the shuttle or  if you want to give it a shot, you're at the right place!" ],
+            "intro": ["Swwwwiiiisshhhh.......Swwoosshhh (dramtic sounds)","Dear Badminton lovers, let us introduce to you ShuttleX , the BX badminton committee", "If you feel like your biceps and triceps have got the swing for the shuttle or  if you want to give it a shot, you're at the right place!", "Use /help to find our commands." ],
             "info": ["We've got great news for you!","ShuttleX is a brand new committee but it has already tons of things to propose!", "We are partners with the Binet badminton (the engineers badminton committee), so we share the badminton sessions with them!","We are also partner with Goodbad, an amazing badminton store", "so you can have great discount with them", "find out more info with /help", "Also, throughout the year we will be organising events aimed at enhancing that inner baddy spirit!"],
             "groupchat": ["Join the group chat for being up to date with the court session and event timings and for meeting fellow Shuttlers!!!", "https://t.me/+-tT9wbNxj144YjFk"],
             "help": ["Here are some great links for the baddy's:", "You can join the Whatsapp groupchat with engineers", "https://chat.whatsapp.com/FjfLByt6VeD61JbPvshVJF", "Here is also the link for Goodbad store", "https://goodbad.fr/", "you need to create an account as a member of the badminton committee ShuttleX", "and you'll get discounts the following day!", "Feel free to text Manon @MaPaw for suplementary informations!" ],
@@ -86,14 +86,14 @@
         }
     },
     "RunX": {
-        "name": "RunX \uD83C\uDFC3\u200D\uFE0F\uD83C\uDFC3\u200D\uFE0F",
+        "name": "RunX \uD83C\uDFC3\u200D♂\uFE0F\uD83C\uDFC3\u200D♀\uFE0F",
         "command": "/RunX",
         "board": {
             "Manon": {"role":  "Prez", "message": "I am neither home nor at class if and only if I am running"},
             "Tudor": {"role":  "Vice-prez", "message": "Run addict"}
         },
         "messages": {
-            "intro": ["Welcome", "And never forget:", "Run like hell"],
+            "intro": ["Welcome", "And never forget:", "Run like hell", "And also to use /help for possible commands."],
             "info": ["Life is like a box of chocolates; you never know what you’re gonna get.","But with RunX, you're sure to find the right shoe!", "Find partners", "Participate to run and training sessions", "Stay tuned for all the races to come around the campus", "and challenge yourself"],
             "groupchat": ["Run Forrest, you're quite there!", "Join this groupchat","You'll meet your future best partners and best peers to suffer with", "you'll also be notified of all the training sessions we will organize!","https://t.me/+YBf9KoqvjlU2NWZk" ],
             "help": ["Do not hesitate to contact Manon or Tudor if you need any information or anything else", "(we promise we are nice)", "Before we leave each other, have a look at these:", "https://www.youtube.com/watch?v=187trX0mo1o", "https://www.youtube.com/watch?v=j2s8yGMEbSs"],
@@ -111,7 +111,7 @@
         },
         "messages": {
             "intro": ["Welcome to the XCinema section"],
-            "info": ["Once upon a Bachelor", "Craziest filmlovers gathered", "and took over the film comittee.", "They've planned bunch of events", "regular streamings, activities, film festivals, artweek, filmmaking and challenges"],
+            "info": ["Once upon a Bachelor", "Craziest filmlovers gathered", "and took over the film comittee.", "They've planned bunch of events", "regular streamings, activities, film festivals, artweek, filmmaking and challenges", "Use /help for commands."],
             "groupchat": ["The 1st rule of XCinema committee is:", "You do not talk about XCinema Groupchat.","2nd rule of XCinema comittee is:", "You do NOT talk about XCinema Groupchat.", "https://t.me/+pyLghgd3mI4wZTE0"],
             "help": ["/sub to make sure sure you get all the news, or you can even join the /groupchat", "For further informations, you can get in touch with any member of the /board"],
             "predetermined": ["Sorry, I can't answer this request", "Please try again or contact a member of the /board if it is a specific request"]
@@ -150,7 +150,7 @@
             "info": ["something something"],
             "groupchat": ["Use the link to join our cult:", "https://t.me/+OTOjLtht30Y4MWQx"],
             "help": ["Use /info if you want some information, /board if you want useless messages, /groupchat to get yourself some friends and /exit to get off your phone and start climbing something."],
-            "predetermined": ["Look, if you can't use commands correctly, how am I supposed to trust what you tell me while belaying?"]
+            "predetermined": ["Look, if you can't use commands correctly, how am I supposed to trust what you tell me while belaying?", "Use /help to become dependable."]
         }
     },
 
@@ -162,14 +162,14 @@
             "Raluca": {"role":  "Co-President", "message": "<Optional Board member 2 message>"}
         },
         "messages": {
-            "intro": ["Commercial, Hip Hop, Dance, EDM, Funk, Chill, Reggaeton, House, Techno,... we MIX all your favorite songs at the events, afterworks and parties"],
+            "intro": ["Commercial, Hip Hop, Dance, EDM, Funk, Chill, Reggaeton, House, Techno,... we MIX all your favorite songs at the events, afterworks and parties", "Use /help to find out some more."],
             "info": ["BSide is the one and only Bachelor Mixing Committee bringing crazy music and epic parties to l'X"],
             "groupchat": ["No link for the groupchat yet, but go check our instagram @bside_bx"]
         }
       },
     "GameX": {
         "name": "GameX",
-        "command": "GameX",
+        "command": "/GameX",
         "board": {
           "Gabriel Faes": {"role":  "President", "message": "Passionate about games. Maybe too much."},
           "Tamar Tsikarishvili": {"role":  "Vice-President", "message": "Always down for a quick, five-hour session of board games. Winning is for losers, I'm just here to have a chuckle."}
@@ -181,7 +181,219 @@
           "help": ["You can use /info to get more info about the committee, as well as /groupchat to get the link to the groupchat."],
           "predetermined": ["Didn't quite get that. Use /help if you want some more information."]
         }
+    },
+    "Knittix": {
+        "name": "Knittix 🧶🧵🪡",
+        "command": "/knit",
+        "board": {
+            "Rémi": {
+                "role": "President"
+            }
+        },
+        "messages": {
+        "intro": ["Hey welcome to the most creative committee there is.", "Use /help to see view our commands."],
+        "info": [
+            "We can teach you knitting, crochet and sewing",
+            "Come to our meetings where we will knit or crochet with biscuits, tea and good music to go with it",
+            "We also have workshops where we will teach you something new and work on various projects"
+        ],
+        "groupchat": ["https://t.me/+C1_AUEU08JoxY2Nk"],
+        "help": [
+            "In this amazing committee bot you can learn /info about Knittix or about our /board",
+            "You can also get the link to the Knittix groupchat with the command /groupchat"
+        ],
+        "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "Cooking Committee": {
+        "name": "Cooking Committee",
+        "command": "/cookx",
+        "board": {
+            "Martin Lau": {"role":  "President", "message": "Primary administrator for the commitee, authority over the kitchen and inventory."},
+            "Gabriel Mayor": {"role": "Event Manager", "message":"Event Manager. Contact for event suggestions and feedback."},
+            "Aditya Swaminathan": {"role":  "Restaurant Manager", "message": "Restaurnat Manager. Contact for restaurant proposals and ideas."}
+        },
+        "messages": {
+            "intro": ["Welcome to the cooking committee!", "The cooking committee is dedicated to improving the culinary journies of Bachelor students.", "Find our commands using /help."],
+            "info": ["The cooking committee is divided into three sections:","A general forum (our groupchat) where Bachelor students can share images of their dishes, recipes and a place for discussion.","Events: We will organize cooking events to gather interested cooks to test new recipes and cook together.", "Businesses: The cooking committee intends to diversify the food options available to Bachelors. As such, the cooking committee will help students run restaurants and sell their food to others."],
+            "groupchat": ["Telegram Groupchat: https://t.me/+Ig83EAfXn_AwZDA1"],
+            "help": ["'/intro': See an introduction to our committee", "'/info': See information about our committee", "'/groupchat': Access the link to join the cooking committee forum"],
+            "predetermined": ["Your message was not a valid command! Check /help to see which commands can be used."]
+        }
+    },
+    "The Greench": {
+        "name": "The Greench",
+        "command": "/greench",
+        "board": {
+            "Cenzo De Carvalho": {"role":  "President", "message": "Primary overseer of the commitee."},
+            "Martin Lau": {"role":  "Vice President", "message": "Responsible of inventory and committee treasury."}
+        },
+        "messages": {
+        "intro": ["The Greench oversees the small garden of the Batiment 103.", "Find this committee's commands using /help."],
+        "info": ["We're a small bunch of gardening enthusiasts that just enjoy seeing plants grow and enjoying the fruits of our work."],
+        "groupchat": ["Contact @thatmartinlau to get added to the Greench!"],
+        "help": ["'/intro': See an introduction to our committee", "'/info': See information about our committee", "'/groupchat': Access the groupchat", "/exit: Exit the committee"],
+        "predetermined": ["Your message was not a valid command! Check /help to see which commands can be used."]
+        }
+    },
+    "LGBTQX": {
+        "name": "LGBTQX \ud83c\udff3\ufe0f\u200d\ud83c\udf08",
+        "command": "/lgbtqx",
+        "board": {
+            "Wojtek": {"role":  "Prez", "message": "The Queen"},
+            "Klaara": {"role":  "Trez", "message": "Another committee I'm treasurer of ..."},
+            "Sven": {"role":  "VPrez", "message": "Our trusted French speaker"},
+            "Sal": {"role":  "Board member", "message": ""},
+            "Anca": {"role":  "Board member", "message": ""},
+            "Flore": {"role":  "Board member", "message": ""},
+            "Cyriac": {"role":  "Board member", "message": ""}
+        },
+        "messages": {
+            "intro": ["Hi, this is LGBTQX speaking, your LGBTQIA+ committee on campus <3", "You can find our possible commands using /help."],
+            "info": ["We're here to gather together our diverse student body to celebrate our queerness and create a space for discussion about LGBTQIA+ matters.","We communicate our shared needs and concerns to the school admin, so let us know how we can help you.", "Throughout the year we organize events, parties, and the IP Pride Parade in May.", "Hot shit, no?"],
+            "groupchat": ["Join our groupchat to be the first to hear all about our upcoming events and discuss more and less important stuff", "https://t.me/+LvoyrDQ4yF1kYWE0"],
+            "help": ["You're lost? Write /info to learn more about us", "/board to meet our fabulous board members", "Type /sub to always know what's up and /event to learn more about our upcoming events", "If you are done you can /exit", "Bisous"],
+            "predetermined": ["Excuse me? How did you call me? I didn't catch that. Maybe use /help"]
+        }
+    },
+    "Music Committee": {
+        "name": "Music Committee",
+        "command": "/music",
+        "board": {
+            "Fanny": {"role":  "President"},
+            "Sascha": {"role":  "Ingenieur Communications"},
+            "Giselle": {"role":  "Lore messenger"},
+            "Gabriel": {"role":  "SMB band leader"},
+            "Andrey": {"role":  "Sound ingenieur"}
+        },
+        "messages": {
+            "intro": ["Hello beautiful musician!\nxplore our committee section using /help."],
+            "info": ["The music committee is a big family of musicians and music lovers",
+                "By joining us you can get access to the music rooms of the 103, join a band, and participate in musical events such as concerts and music week",
+                "We can't wait to discover your musical talent!"
+            ],
+            "groupchat": ["To join our family, simply join our group chat and stay updated on upcoming events!",
+                "here's the lovely link: https://t.me/+Md-EReZBnTFhMjky"
+            ],
+            "events": ["We will be hosting jam session right after the committee fair today",
+             "so come down with your instrument and enjoy the music!"
+            ],
+            "ensembles": ["This year we would like to make the music committe more lively by building ensembles that would rehearse ever so often",
+                "Our very own A cappella group will live on on, led by Fanny",
+                "Gabriel is creating his own SMB band which will play Jazz, Pop and maybe some Rock",
+                "We are also gaging interest in the creation of a choir and small orchestra sessions",
+                "Finally, if you are interested you can sign up to be put into a band of your Choice (jazz, rock, chambre music,...)", "if you are interested in one or more of the above please fill out the following form: https:// forms.gle/dHzqJyyFzVvThTmn9"
+            ],
+            "help": ["In this amazing committee bot you can learn /info about the music committee and learn more about our wonderful / board, /ensembles and upcoming /events",
+                "Whenever you want to leave just /exit"
+            ],
+            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "PhysiX": {
+        "name": "PhysiX",
+        "command": "/PhysiX",
+        "board": {
+            "Tamar Tsikarishvili": {"role":  "President", "message": "Hello! I try to make sure events are organized from time to time. Feel free to ask me anything, but I'll probably only have answers to what's related to PhysiX"},
+            "Aditya Swaminathan": {"role":  "Communications", "message": "Occupied with making sure everyone's aware of everything all the time"},
+            "Vlad-Ștefănuț Radu": {"role":  "Logistics", "message": "Occuped with making sure our events aren't purely theoretical"},
+            "Koka Sathwik": {"role":  "Seminar management", "message": "Occupied with making sure you have something interesting to look forward to next week. Or the week after that."},
+            "Victor Dumbravă": {"role":  "Competition management", "message": "Hi there! I'm Victor and I deal with contest management and astronomy 🔭 for the PhysiX committee. Feel free to ask me any questions 🤔 about PhysiX and its events."}
+        },
+        "messages": {
+            "intro": ["Welcome to PhysiX, the Bachelor physics committee!", "It doesn't take a PhD to guess what we do, nor to use /help to find our possible commands."],
+            "info": ["Our goal is to bridge the gap between the kind of physics you learn in the classroom and the kind of physics you wish to explore for fun!", "We organize a variety of events, for casual enthusiasts and experts alike. You can join our Telegram chat for updates, or follow our account on Instagram, @physix_bx, to see our past events."],
+            "groupchat": ["Join our Telegram chat for physics-related discussions and event updates!"],
+            "help": ["You can learn more about PhysiX through /info, or get to know the board through /board", "If you wish to keep up with our events, /sub to our communications! Or check out our next event through /event", "Lastly, you can /exit whenever you'd like"],
+            "predetermined": ["Sorry, that's not a defined command! Use /help to see what you can use."]
+        }
+    },
+    "BMathX": {
+        "name": "BMathX",
+        "command": "/math",
+        "board": {
+            "George": {"role":  "President", "message": "Leads our math-loving crew and talks about Iași a bit too much"},
+            "Darius": {"role":  "Math Contest Host", "message": "Likes astrology, likes math more (allegedly)"},
+            "Ipop": {"role":  "Math Contest Host", "message": "Will mention she did olympiads in high school within the first 5 mins you meet her"},
+            "Koka": {"role":  "Seminar Coordinator", "message": "Talks about math stuff nobody else understands"},
+            "Marta": {"role":  "Communications", "message": "Skilled graphic designer and emoji sender"},
+            "Oscar": {"role":  "Integration Bee Host", "message": "Will make you question all you know by a twisted sign called integral"},
+            "Milana": {"role":  "Puzzle Event Host", "message": "Puzzles no one can actually solve but have fun trying"}
+        },
+        "messages": {
+            "intro": ["Welcome to BMathX - the math committee of the bachelor!", "Find our commands using /help."],
+            "info": ["With us, you can explore your passion for math outside of the university curriculum!", "We host Math Competitions with students from other unis like Cambridge and Oxford, bring Polytechnique Professors to talk about their research in weekly seminars, and organize other fun events like an Integration Bee, or a Puzzle Afternoon"],
+            "groupchat": ["Here is the link to join our groupchat: https://t.me/+iCJwSvUv1RNiYTQ8"],
+            "help": ["You can learn /info about BMathX or about our /board", "Moreover, you can /sub to our communications or view our next /event", "Whenever you want to leave just /exit"],
+            "predetermined": ["I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "VolunteerX": {
+        "name": "VolunteerX 🫶🏼",
+        "command": "/VolunteerX",
+        "board": {
+            "Flore": {"role":  "President", "message":  "You can call me The boss or baby :)"},
+            "Charlotte": {"role":  "Vice President", "message": "Your VP: V stands for Volunteering and P stands for Passion ;)"},
+            "Cyriac": {"role":  "Treasurer", "message": "My job is to make sure that the money we collect over the year ends up in the hands of all those amazing charities that help change the world !! :))"},
+            "Adrien": {"role":  "Project manager", "message":  "I manage projects inside the VolunteerX Committee. Contact me if you have any ideas of projects you would like to implement :)"},
+            "Berra": {"role":  "Project manager", "message":  ""},
+            "Emma": {"role":  "Event manager and design", "message":  "I make sure everything goes as planned to make your volunteering experiences unforgettable! :)"},
+            "Sacha": {"role":  "Event manager", "message":  ""},
+            "Hiba Lina": {"role":  "Communications and social media", "message":  "You can call me 'Hibslins', the chocolate lover on a volunteering mission! 🍫🤝 I'm part of an awesome volunteering committee, where we're all about spreading positivity. Want to join us? Let's make life sweeter, one act of kindness at a time! 😄🌟"}
+        },
+        "messages": {
+            "intro": ["Heyy, welcome to the kindest and most benevolent committee🩵", "Get ready to provide a helping hand to those in need!", "type /help if you want to see possible commands."],
+            "info": ["This is the volunteering committee, which organises all the volunteering and charity events on campus. ", "Through thrift shops👕, bake sales🍪 and charity runs🏃‍♂️, we have raised money for cancer research (Imagine for Margo), to fight world hunger (Action contre la faim) and to donate to Ukraine, Syria and Turkey. We have also organised a hair donation 💇‍♀️ to make wigs for cancer patients and to make filters so absorb the oil polluting the oceans."],
+            "groupchat": ["Everyone is welcome to help! Whether you want to take part in all our events or you just want to help out in one of them, join to group chat to keep up with all the updates: https://t.me/+tmVaWvpuTwRiNDU0"],
+            "help": ["In this amazing committee bot you can learn /info about VolunteerX and get to know our /board", "Moreover, you can join our /groupchat or view our next /event", "Whenever you want to leave just /exit"],
+            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "NeXt": {
+        "name": "NeXt ☘️",
+        "command": "/NeXt",
+        "board": {
+            "Charlotte": {"role":  "President 👑", "message":  "Eco-Captain with a PhD in hugging trees ;)"},
+            "Fanny": {"role":  "Vice President + Communication 📞", "message": "Sustainably communicating ;)"},
+            "Antoine": {"role":  "Treasurer 💶", "message": "As the Treasurer of NeXt, I’m dealing with the budget for all the upcoming events, asking for fundings and seeking for sponsorships. Join NeXt to help us in this mission and maybe take over me next year ;) and feel free to dm me if you have any specific questions."},
+            "Johanna": {"role":  "l’ORE manager🌊"},
+            "Thibaut": {"role":  "Building manager 🏫"},
+            "Manon": {"role":  "EcoWeek Manager 🪴"},
+            "Maëlle": {"role":  "Co-Committee Event Manager 🤝"},
+            "Simon": {"role":  "Seminars and PDV 🎤"}
+        },
+        "messages": {
+            "intro": ["Hey Eco-lovers, Get ready to embark on an ecological journey like never before with NeXt, our ecological committee!  ",
+                "We’re here to raise awareness about pressing ecological and environmental issues and ignite sustainable actions through a year-round calendar of engaging events and initiatives !  🫶 ",
+                "Join the committee and the planet will thank you ! 🌍", "Use /help to see possible commands!"],
+            "info": ["NeXt committee is the ecological association of the Bachelor ! It is open to any bachelors interested in the environmental cause 🌱 and who wishes to save the planet !  ",
+                "Throughout the year, we organise all sort of events to sensibilize, raise awareness to environmental problems and encourage people to adopt more sustainables lifestyles ! Even small gestures are better than nothing !  🙌 ",
+                "We work towards making our building more eco-friendly and try to cooperate with the admin, engineers and professionnels to promote sustainability through fun activities, seminars and our very own Eco-Week 🪴 ! Don’t forget : we need your resistence to save our existence, there is no planet B !"],
+            "groupchat": ["Come and join the committee if you want to be part of NeXt and join the team !: https://t.me/+R71qPgiR2JRmZTc8"],
+            "help": ["This bot will simplify your life ! Get some /info about NeXt and the /board.  ", "Feel free to join the /groupchat or stay tune for the upcoming /event. ", "Whenever you want to leave just /exit"],
+            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+        }
+    },
+    "BX-Pro": {
+        "name": "BX-Pro",
+        "command": "/pro",
+        "board": {
+            "Sixtine": {"role":  "President"},
+            "Simon": {"role":  "Vice president"},
+            "Oscar": {"role":  "Treasurer"},
+            "Romain": {"role":  "Logistics"},
+            "Maelle": {"role":  "Contacts"},
+            "Osman": {"role":  "Contacts"},
+        },
+        "messages": {
+            "intro": ["The most useful committee of the bachelor: get networking and internship opportunities!", "Use /help to view possible commands"],
+            "info": ["We're BX-Pro, the committee which helps you find internships and creates networking opportunities for all our fellow bachelor students."],
+            "groupchat": ["We don't have a groupchat but we have a channel. To join it, use the following link: https://t.me/+yCI874wVnmBjODQx"],
+            "help": ["In this amazing committee bot you can learn /info about BX-Pro or about our /board", "You can also check out and join our channel using /groupchat", "Whenever you want to leave just /exit"],
+            "predetermined": ["Oh I didn't quite understand what you said, use /help to learn about what you can do over here"]
+    }
     }
 }
+
 
 
