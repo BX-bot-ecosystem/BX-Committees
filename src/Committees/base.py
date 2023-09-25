@@ -752,6 +752,8 @@ class Message_handler:
             return self.state.HUB
         await context.bot.send_message(chat_id=update.effective_user.id,
                                        text="What message do you wish to send to your subscriptors?")
+        await context.bot.send_message(chat_id=update.effective_user.id,
+                                       text="Any instances of {{name}} will be substituted by the first name of the subscriber")
         return self.state.MESSAGE
 
     async def confirm(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -779,9 +781,10 @@ class Message_handler:
         counter = 0
         for user in users_info:
             try:
+                custom_message = self.message_text.replace('{{name}}', user["name"])
                 await parrot_bot.send_message(chat_id=user['id'],
                                                text=f'Hello {user["name"]}, this is a communication from {self.active_committee}:')
-                await parrot_bot.send_message(chat_id=user['id'], text=self.message_text)
+                await parrot_bot.send_message(chat_id=user['id'], text=custom_message)
             except telegram.error.BadRequest:
                 counter += 1
                 await sailore_bot.send_message(chat_id=user['id'],
