@@ -29,7 +29,7 @@ class Bar(base.Committee_hub_base):
         self.info = bx_utils.db.get_committee_info(self.name)
     async def menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Asks for the receival of the menu"""
-        file_path = utils.config.ROOT +  '/data/temp_files/menu.jpg'
+        file_path = utils.config.ROOT +  '/data/menu.jpg'
         try:
             bx_utils.drive.download_committee_file(self.name, 'menu.jpg', file_path)
             with open(file_path, 'rb') as file:
@@ -48,8 +48,8 @@ class Bar(base.Committee_hub_base):
         photo = update.message.photo[-1]
         photo_id = photo.file_id
         photo_obj = await context.bot.getFile(photo_id)
-        await photo_obj.download_to_drive(custom_path=utils.config.ROOT + '/data/temp_files/menu.jpg')
-        bx_utils.drive.upload_image_to_committee(self.name, utils.config.ROOT + '/data/temp_files/menu.jpg')
+        await photo_obj.download_to_drive(custom_path=utils.config.ROOT + '/data/menu.jpg')
+        bx_utils.drive.upload_image_to_committee(self.name, utils.config.ROOT + '/data/menu.jpg')
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text="Photo received")
         return self.state.HUB
