@@ -688,10 +688,12 @@ class Access_handler:
         new_password=self.active_committee + ':' + ''.join(random.choices(string.digits + string.ascii_letters, k=10))
         bx_utils.db.add_one_time_pass(new_password, self.active_committee)
         await context.bot.send_message(chat_id=update.effective_chat.id,
-                                       text=f"The password generated is <b>{new_password}</b>, the default rights are admin for new users",
+                                       text=f"The password generated is:")
+        await context.bot.send_message(chat_id=update.effective_chat.id,
+                                       text="<b>{new_password}</b>",
                                        parse_mode=ParseMode.HTML)
         await context.bot.send_message(chat_id=update.effective_chat.id,
-                                       text=f"This password only has one use, send it to the person you want to give access")
+                                       text=f"This password only has one use, send it to the person you want to give access, the default rights are admin for new users")
         return self.state.HUB
     async def rights(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         self.right_changer = Right_changer(self.admins_rights)
