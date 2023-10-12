@@ -63,7 +63,10 @@ class Bar(base.Committee_hub_base):
 
     async def stocked_drinks(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Allows to modify the accesible drinks through the order functionality"""
-        self.current_drinks = bx_utils.db.get_committee_info(self.name)["drinks"]
+        try:
+            self.current_drinks = bx_utils.db.get_committee_info(self.name)["drinks"]
+        except KeyError:
+            self.current_drinks = ''
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text=f"The current drinks are: {self.current_drinks} \nWhat do you want to do?",
                                        reply_markup=self.create_keyboard(["Add", "Delete"]))
