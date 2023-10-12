@@ -1,0 +1,37 @@
+variables:
+  IMAGE_TAG: registry.binets.fr/bx-telegram/bx-committees
+
+stages:
+  - ship
+  - deploy
+
+# Create the docker image and upload it to the project registry
+ship:
+  stage: ship
+  when: manual
+  image: docker:latest
+  services:
+    # Run docker inside gitlab docker runners
+    - docker:dind
+  variables:
+    # Needed in order to access the docker daemon because this runner is inside docker
+    DOCKER_HOST: tcp://docker:2375
+    # Needed to run docker inside docker
+    DOCKER_DRIVER: overlay2
+    # For disabling TLS in docker-in-docker (mandatory!)
+    DOCKER_TLS_CERTDIR: ""
+
+  script:
+    # Login to gitlab registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $IMAGE_TAG
+    # Build docker image using the latest as cache
+    - docker build --pull -t $IMAGE_TAG .
+    # Push the docker image to the registry
+    - docker push $IMAGE_TAG
+
+deploy: # This job runs in the deploy stage.
+  stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
+  when: manual
+  script:
+    - apk update && apk add curl
+    - curl --request POST --form token=$TRIGGER_TOKEN --form ref=master --form variables[PROJECT]=bx-bot https://gitlab.binets.fr/api/v4/projects/560/trigger/pipeline
