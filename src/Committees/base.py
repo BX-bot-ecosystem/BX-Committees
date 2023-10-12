@@ -27,6 +27,7 @@ from telegram.ext import (
 
 from dotenv import load_dotenv
 import os
+import math
 load_dotenv()
 
 COMMITTEES_TOKEN = os.getenv("SAILORE_COMMITTEE_BOT")
@@ -167,6 +168,34 @@ class Committee_hub_base:
         await context.bot.send_message(chat_id=update.effective_user.id,
                                        text="Successful logout")
         return self.state.EXIT
+
+    def create_balanced_layout(self, names):
+        total_members = len(names)
+        ideal_group_size = math.isqrt(total_members)
+        if names == []:
+            return None
+        remainder = total_members % ideal_group_size
+
+        groups = [names[i:i + ideal_group_size] for i in range(0, total_members - remainder, ideal_group_size)]
+
+        # Distribute the remaining members across the groups
+        for i in range(remainder):
+            groups[i].append(names[total_members - remainder + i])
+
+        return groups
+
+    def create_keyboard(self, names):
+        layout = self.create_balanced_layout(names)
+        if layout is None:
+            return None
+        keyboard = []
+        for name_list in layout:
+            keyboard_row = []
+            for name in name_list:
+                keyboard_row.append(InlineKeyboardButton(name, callback_data=name))
+            keyboard.append(keyboard_row)
+        keyboard.append([InlineKeyboardButton('Nay', callback_data='Nay')])
+        return InlineKeyboardMarkup(keyboard)
 
 class Right_changer:
     class State(enum.Enum):

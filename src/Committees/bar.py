@@ -21,10 +21,17 @@ from telegram.ext import (
 class Bar(base.Committee_hub_base):
     def __init__(self):
         base.Activity.MENU = 10
+        base.Activity.DRINKS = 11
+        base.Activity.ADD_DRINK = 12
+        base.Activity.DELETE_DRINK = 13
         super().__init__(
             name=".9 Bar",
-            extra_states={base.Activity.MENU: [MessageHandler(filters.PHOTO, self.menu_confirmation)]},
-            extra_hub_handlers=[CommandHandler("menu", self.menu)]
+            extra_states={base.Activity.MENU: [MessageHandler(filters.PHOTO, self.menu_confirmation)],
+                          base.Activity.DRINKS: [CallbackQueryHandler(self.stock_update)],
+                          base.Activity.ADD_DRINK: [MessageHandler(filters.TEXT, self.add_drink)],
+                          base.Activity.DELETE_DRINK: [CallbackQueryHandler(self.delete_drink)]},
+            extra_hub_handlers=[CommandHandler("menu", self.menu),
+                                CommandHandler("stock", self.stocked_drinks)]
         )
         self.info = bx_utils.db.get_committee_info(self.name)
     async def menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -52,4 +59,49 @@ class Bar(base.Committee_hub_base):
         bx_utils.drive.upload_image_to_committee(self.name, utils.config.ROOT + '/data/menu.jpg')
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text="Photo received")
+        return self.state.HUB
+
+    async def stocked_drinks(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Allows to modify the accesible drinks through the order functionality"""
+        self.current_drinks = bx_utils.db.get_committee_info(self.name)["drinks"]
+        await context.bot.send_message(chat_id=update.effective_chat.id,
+                                       text=f"The current drinks are: {self.current_drinks} \nWhat do you want to do?",
+                                       reply_markup=self.create_keyboard(["Add", "Delete"]))
+        return self.state.DRINKS
+
+    async def stock_update(self, update: Update, context: CallbackContext):
+        self.drinks = bx_utils.db.db_to_list(self.current_drinks)
+        query = update.callback_query
+        await query.answer()
+        answer = query.data
+        if answer == 'Nay':
+            await query.edit_message_text(text='Alright')
+            return self.state.HUB
+        if answer == 'Add':
+            await query.edit_message_text(text='Send the name of the new drink')
+            return self.state.ADD_DRINK
+        if answer == 'Delete':
+            await query.edit_message_text(text="Which drink do you want to delete", reply_markup=self.create_keyboard(self.drinks))
+            return self.state.DELETE_DRINK
+
+    async def add_drink(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        drink = update.message.text
+        self.drinks.append(drink)
+        drink_string = bx_utils.db.list_to_db(self.drinks)
+        bx_utils.db.extra_committee_info(self.name, "drinks", drink_string)
+        await context.bot.send_message(chat_id=update.effective_chat.id,
+                                       text="List updated")
+        return self.state.HUB
+
+    async def delete_drink(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        query = update.callback_query
+        await query.answer()
+        if query.data == 'Nay':
+            await query.edit_message_text(text='Alright')
+            return self.state.HUB
+        drink = query.data
+        self.drinks.remove(drink)
+        drink_string = bx_utils.db.list_to_db(self.drinks)
+        bx_utils.db.extra_committee_info(self.name, "drinks", drink_string)
+        await query.edit_message_text(text='List updated')
         return self.state.HUB
