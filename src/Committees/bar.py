@@ -34,6 +34,7 @@ class Bar(base.Committee_hub_base):
                                 CommandHandler("stock", self.stocked_drinks)]
         )
         self.info = bx_utils.db.get_committee_info(self.name)
+        self.current_drinks = ''
     async def menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Asks for the receival of the menu"""
         file_path = utils.config.ROOT +  '/data/menu.jpg'
