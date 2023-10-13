@@ -39,7 +39,7 @@ class Bar(base.Committee_hub_base):
                           },
             extra_hub_handlers=[CommandHandler("menu", self.menu),
                                 CommandHandler("stock", self.stocked_drinks),
-                                CommandHandler("snack", self.snack_update)]
+                                CommandHandler("snack", self.stocked_snacks)]
         )
         self.info = bx_utils.db.get_committee_info(self.name)
     async def menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
